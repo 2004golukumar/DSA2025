@@ -1,0 +1,90 @@
+check whether it is sorted in non-decreasing order. Return true if it is sorted otherwise false.
+#include <iostream>
+
+using namespace std;
+
+bool isSorted(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) { // Last element ko compare karne ki zaroorat nahi
+        if (arr[i] > arr[i + 1]) {
+            return false; // Agar koi bhi element next se bada hai toh sorted nahi
+        }
+    }
+    return true; // Agar pura loop nikal gaya toh array sorted hai
+}
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    cout << (isSorted(arr, n) ? "true" : "false") << endl;
+    return 0;
+}
+Sorted Array se Duplicates Remove Karne ka kaam in-place karna hai, matlab extra space nahi use karna. Iska logic simple hai, chalo samjhte hain.
+#include <iostream>
+
+using namespace std;
+
+int removeDuplicates(int arr[], int n) {
+    if (n == 0) return 0; // Agar array empty ho toh return 0
+
+    int index = 0; // Unique elements ka tracker
+
+    for (int i = 1; i < n; i++) {
+        if (arr[i] != arr[index]) { // Jab unique element mile
+            index++;  // Index ko badhao
+            arr[index] = arr[i]; // Unique element ko store karo
+        }
+    }
+
+    return index + 1; // Unique elements ka count return karo
+}
+
+int main() {
+    int arr[] = {2, 2, 2, 2, 2};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    int newSize = removeDuplicates(arr, n);
+
+    // Modified array print karenge
+    cout << "Modified Array: ";
+    for (int i = 0; i < newSize; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    cout << "Size of Modified Array: " << newSize << endl;
+    return 0;
+}
+Clockwise rotation ka matlab last element ko first position pe lana hai, aur baaki elements ko right shift karna hai.
+#include <iostream>
+
+using namespace std;
+
+void rotateByOne(int arr[], int n) {
+    if (n <= 1) return; // Agar ek ya zero element ho toh kuch nahi karna
+
+    int last = arr[n - 1]; // Last element ko store karna
+
+    // Right shift karna
+    for (int i = n - 1; i > 0; i--) {
+        arr[i] = arr[i - 1];
+    }
+
+    arr[0] = last; // Last element ko first position pe daalna
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    rotateByOne(arr, n);
+
+    cout << "Rotated Array: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+
