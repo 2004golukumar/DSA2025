@@ -1,0 +1,52 @@
+##Union-Find
+class Solution {
+  public:
+    // Find the representative (root parent) of a node with path compression
+    int findParent(int node, int par[]) {
+        if (par[node] == node) return node;
+        return par[node] = findParent(par[node], par); // Path compression
+    }
+
+    // Function to merge two nodes a and b
+    void union_(int a, int b, int par[], int rank1[]) {
+        int rootA = findParent(a, par);
+        int rootB = findParent(b, par);
+
+        if (rootA != rootB) { // Agar dono ka parent alag hai toh merge karna
+            if (rank1[rootA] > rank1[rootB]) {
+                par[rootB] = rootA; // Smaller rank ko larger wale se attach karna
+            } else if (rank1[rootA] < rank1[rootB]) {
+                par[rootA] = rootB;
+            } else {
+                par[rootB] = rootA;
+                rank1[rootA]++; // Same rank wale case me parent update karna
+            }
+        }
+    }
+
+    // Function to check whether two nodes are connected
+    bool isConnected(int x, int y, int par[], int rank1[]) {
+        return findParent(x, par) == findParent(y, par); // Agar same root hai toh connected hain
+    }
+};
+##linear search
+int searchElement(vector<int>& arr, int x) {
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr[i] == x) {
+                return i; // First occurrence ka index return karna
+            }
+        }
+        return -1; // Agar `x` nahi mila toh `-1` return karna
+    }
+##moveZeroes
+ void moveZeroes(vector<int>& nums) {
+        int index = 0; // Non-zero elements ke liye tracker
+
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] != 0) {
+                swap(nums[index], nums[i]); // Zero ko last push karne ke liye swap
+                index++;
+            }
+        }
+    }
+
