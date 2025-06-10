@@ -1,0 +1,26 @@
+##Longest Subarray with Sum K
+  unordered_map<int, int> sumIndexMap;  // Prefix sum ka first occurrence store karega
+    int prefixSum = 0;
+    int maxLength = 0;
+
+    for (int i = 0; i < arr.size(); i++) {
+        prefixSum += arr[i];
+
+        // Agar sum direct k ke equal ho jaye
+        if (prefixSum == k) {
+            maxLength = i + 1;
+        }
+
+        // Agar (prefixSum - k) hashmap me exist karta hai
+        if (sumIndexMap.find(prefixSum - k) != sumIndexMap.end()) {
+            maxLength = max(maxLength, i - sumIndexMap[prefixSum - k]);
+        }
+
+        // Har prefix sum ka first occurrence store kare (sirf pehli baar)
+        if (sumIndexMap.find(prefixSum) == sumIndexMap.end()) {
+            sumIndexMap[prefixSum] = i;
+        }
+    }
+
+    return maxLength;
+    }
