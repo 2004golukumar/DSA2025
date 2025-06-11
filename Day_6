@@ -1,0 +1,19 @@
+##Subarray Sum Equals K(only for positive number)
+unordered_map<int, int> prefixSumCount;  // Prefix sum ka occurrence store karega
+    int prefixSum = 0, count = 0;
+    
+    prefixSumCount[0] = 1;  // Edge case
+
+    for (int num : nums) {
+        prefixSum += num;
+        
+        // Agar (prefix_sum - k) hashmap me milta hai toh valid subarrays exist karte hain
+        if (prefixSumCount.find(prefixSum - k) != prefixSumCount.end()) {
+            count += prefixSumCount[prefixSum - k];
+        }
+
+        // Prefix sum ka occurrence store karo
+        prefixSumCount[prefixSum]++;
+    }
+
+    return count;
