@@ -1,0 +1,41 @@
+For Input : 
+206 20 789 184 853 948 822 0
+Your Code's output is: 
+206 20 789 184 853 948 822
+It's Correct output is: 
+206 20 789 184 853 948 822 0
+Output Difference: 
+206 20 789 184 853 948 822 0
+
+  int maxSum = -1, currentSum = 0;
+    int maxStart = -1, maxEnd = -1;
+    int start = 0;
+    
+    vector<int> result;
+    
+    for (int i = 0; i < arr.size(); i++) {
+        if (arr[i] >= 0) {
+            currentSum += arr[i];
+
+            // Agar currentSum maxSum se bada hai, ya same sum par pehle aya ho
+            if (currentSum > maxSum || (currentSum == maxSum && start < maxStart)) {
+                maxSum = currentSum;
+                maxStart = start;
+                maxEnd = i;
+            }
+        } else {
+            // Negative number aaya toh reset karna padega
+            currentSum = 0;
+            start = i + 1;
+        }
+    }
+    
+    if (maxSum == -1) return {-1};  // Agar saare negative hain toh return -1
+    
+    // Result me best subarray return karo
+    for (int i = maxStart; i <= maxEnd; i++) {
+        result.push_back(arr[i]);
+    }
+    
+    return result;
+}
