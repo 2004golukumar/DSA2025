@@ -1,0 +1,9 @@
+  int min_price = INT_MAX;  // Minimum price initialization
+    int max_profit = 0;  // Maximum profit initialization
+
+    for (int price : prices) {
+        min_price = min(min_price, price);  // Track lowest price till now
+        max_profit = max(max_profit, price - min_price);  // Track max profit possible
+    }
+
+    return max_profit;
