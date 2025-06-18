@@ -1,0 +1,19 @@
+  vector<int> positives, negatives;
+    
+    // Step 1: Separate positive and negative numbers
+    for (int num : nums) {
+        if (num > 0) positives.push_back(num);
+        else negatives.push_back(num);
+    }
+
+    // Step 2: Merge in alternate order
+    vector<int> result;
+    int posIndex = 0, negIndex = 0;
+    
+    while (posIndex < positives.size() && negIndex < negatives.size()) {
+        result.push_back(positives[posIndex++]);
+        result.push_back(negatives[negIndex++]);
+    }
+
+    return result;
+}
