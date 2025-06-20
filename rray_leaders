@@ -1,0 +1,15 @@
+  vector<int> leaders;
+    int n = arr.size();
+    int maxRight = arr[n - 1];  // Rightmost is always a leader
+    leaders.push_back(maxRight);
+
+    for (int i = n - 2; i >= 0; i--) {
+        if (arr[i] >= maxRight) {
+            leaders.push_back(arr[i]);
+            maxRight = arr[i];  // Update max
+        }
+    }
+
+    reverse(leaders.begin(), leaders.end()); // To maintain original order
+    return leaders;
+}
