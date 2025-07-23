@@ -1,0 +1,17 @@
+int lowerBound(vector<int>& arr, int x) {
+    int low = 0, high = arr.size() - 1;
+    int ans = arr.size();  // Default: agar nahi mila toh return last index (n)
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (arr[mid] >= x) {
+            ans = mid;     // Possible answer
+            high = mid - 1; // Left side check karo
+        } else {
+            low = mid + 1;  // Right side
+        }
+    }
+
+    return ans;
+}
