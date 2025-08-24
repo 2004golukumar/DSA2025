@@ -1,0 +1,15 @@
+int low=0,int high=arr.size-1,index=-1,ans=INT_MAX;
+while(low<=high){
+int mid=low+(high-low)/2;
+//if arr is sorted
+if(arr[low]<=arr[high]){
+if(arr[low]<ans){
+index=low;
+ans=arr[low];}
+break;
+}
+//left side check
+else if(arr[low]<=arr[mid])
+// right side check
+else
+}
