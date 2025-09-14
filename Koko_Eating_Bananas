@@ -1,0 +1,21 @@
+# include <cmath>
+# include<climits>
+# include <cmath>
+int calculatorTotalHour(vector<int>&v){
+int totalh=0;
+int maxi=INT_MIN;
+int n=v.size();
+for(int i=0;i<n;i++){
+// totalh=ceil((double) v[i]/(double) hourly);
+    maxi=max(maxi,v[i]);
+// if(i=n-1) return maxi;
+ //   cout<<maxi<
+cout<<maxi<<endl;
+return maxi;
+int main() {
+    // Write C++ code here
+vector<int>arr={3,6,7,11};
+    int k=4;
+cout<<totalh;
+    return 0;
+}
